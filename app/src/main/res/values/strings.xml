@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Chat</string>
+    <string name="conversations">Conversations</string>
+    <string name="search_for_friends">Search for friends</string>
+</resources>
