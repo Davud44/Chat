@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.davud.apps.chat.adapters.AllChatAdapter;
+import com.davud.apps.chat.adapters.ChatAdapter;
 import com.davud.apps.chat.adapters.FriendsAdapter;
 import com.davud.apps.chat.models.AllChatModel;
 import com.davud.apps.chat.models.FriendsModel;
@@ -65,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
         friendsModels.add(new FriendsModel(4 , "https://iasbh.tmgrup.com.tr/7e46bb/366/218/22/0/731/421?u=https://isbh.tmgrup.com.tr/sbh/2018/01/17/tom-cruise-kimdir-1516177329595.jpg" , "Tom Cruise"));
         friendsModels.add(new FriendsModel(5 , "https://i2.cnnturk.com/i/cnnturk/75/400x512/5d5b9f8217aca9108c116c59.jpg" , "Margot Robbie"));
         friendsAdapter.notifyDataSetChanged();
+
+        friendsAdapter.setOnItemClickListener(new FriendsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                startActivity(new Intent(context , ChatActivity.class));
+            }
+        });
+
     }
 
     private void initRecyclerViewChats()
@@ -77,8 +87,30 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> images = new ArrayList<>();
         images.add("https://api.wannart.com/storage/post/2019/12/tomhardy_900x600.jpg");
         images.add("https://i.pinimg.com/originals/56/13/01/561301828393528bfc9f575e976642f0.jpg");
-        chatModels.add(new AllChatModel(1 , "Instamobile team" , images , "wow", "10:45 AM",true ));
+        chatModels.add(new AllChatModel(2 , "Instamobile team" , images , "wow", "10:45 AM",true ));
+        chatModels.add(new AllChatModel(1 , "Tom Hardy" , "https://api.wannart.com/storage/post/2019/12/tomhardy_900x600.jpg" , false , "kgdiaw","10:00 AM", false ));
+        chatModels.add(new AllChatModel(1 , "Tom Hardy" , "https://api.wannart.com/storage/post/2019/12/tomhardy_900x600.jpg" , false , "kgdiaw","10:00 AM", false ));
+        chatModels.add(new AllChatModel(1 , "Tom Hardy" , "https://api.wannart.com/storage/post/2019/12/tomhardy_900x600.jpg" , false , "kgdiaw","10:00 AM", false ));
+        chatModels.add(new AllChatModel(1 , "Tom Hardy" , "https://api.wannart.com/storage/post/2019/12/tomhardy_900x600.jpg" , false , "kgdiaw","10:00 AM", false ));
+        chatModels.add(new AllChatModel(1 , "Tom Hardy" , "https://api.wannart.com/storage/post/2019/12/tomhardy_900x600.jpg" , false , "kgdiaw","10:00 AM", false ));
+        chatModels.add(new AllChatModel(1 , "Tom Hardy" , "https://api.wannart.com/storage/post/2019/12/tomhardy_900x600.jpg" , false , "kgdiaw","10:00 AM", false ));
+        chatModels.add(new AllChatModel(1 , "Tom Hardy" , "https://api.wannart.com/storage/post/2019/12/tomhardy_900x600.jpg" , false , "kgdiaw","10:00 AM", false ));
+
         allChatAdapter.notifyDataSetChanged();
+
+        allChatAdapter.setOnItemClickListener(new AllChatAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(context , ChatActivity.class);
+                intent.putExtra("name" , chatModels.get(position).getName());
+                intent.putExtra("isOnline" , chatModels.get(position).isOnline());
+                intent.putExtra("isGroup" , chatModels.get(position).isGroup());
+
+                startActivity(intent);
+
+            }
+        });
+
     }
 
 
