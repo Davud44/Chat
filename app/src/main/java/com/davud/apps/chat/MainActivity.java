@@ -71,7 +71,11 @@ public class MainActivity extends AppCompatActivity {
         friendsAdapter.setOnItemClickListener(new FriendsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                startActivity(new Intent(context , ChatActivity.class));
+                Intent intent = new Intent(context , ChatActivity.class);
+                intent.putExtra("name" , friendsModels.get(position).getName());
+                intent.putExtra("isOnline" , false);
+                intent.putExtra("isGroup" , false);
+                startActivity(intent);
             }
         });
 
